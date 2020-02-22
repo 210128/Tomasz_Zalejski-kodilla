@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>kodilla-stream</module>
+        <module>kodilla-advanced-tests</module>
     </modules>
 
 
