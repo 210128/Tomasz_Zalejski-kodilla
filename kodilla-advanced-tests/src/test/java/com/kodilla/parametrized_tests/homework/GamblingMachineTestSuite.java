@@ -42,7 +42,6 @@ class GamblingMachineTest {
     public void shouldReturnTrueWhenWeEnter6NumbersInRange1To49HowManyWins(int a, int b, int c, int d, int e, int f) throws InvalidNumbersException {
         Integer[] data = {a, b, c, d, e, f};
         Set<Integer> numbers = new HashSet<>(Arrays.asList(data));
-        System.out.println(gamble.howManyWins(numbers));
         assertTrue(gamble.howManyWins(numbers) >= 0 && gamble.howManyWins(numbers) <= 6);
     }
 }
