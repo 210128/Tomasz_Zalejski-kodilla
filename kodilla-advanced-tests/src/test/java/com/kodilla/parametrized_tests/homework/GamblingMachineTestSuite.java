@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GamblingMachineTest {
-    private GamblingMachine gamble = new GamblingMachine();
 
     @ParameterizedTest
     @CsvFileSource(resources = "/intUserNumbers.csv", numLinesToSkip = 1)
-    public void testHowManyWins_WithException(int a, int b, int c, int d, int e, int f){// TODO remove throws InvalidNumbersException {
+    void testHowManyWins_WithException(int a, int b, int c, int d, int e, int f) {
+        GamblingMachine gamble = new GamblingMachine();
         Integer[] data = {a, b, c, d, e, f};
         Set<Integer> numbers = new HashSet<>(Arrays.asList(data));
         assertThrows(InvalidNumbersException.class, () -> gamble.howManyWins(numbers));
@@ -23,7 +23,8 @@ class GamblingMachineTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/intUserNumbers.csv")
-    public void testHowManyWins_WithExceptionWhenNotEnoughNumbersAreGiven(int a, int b, int c, int d, int e){//TODO remove  throws InvalidNumbersException {
+    void testHowManyWins_WithExceptionWhenNotEnoughNumbersAreGiven(int a, int b, int c, int d, int e) {
+        GamblingMachine gamble = new GamblingMachine();
         Integer[] data = {a, b, c, d, e};
         Set<Integer> numbers = new HashSet<>(Arrays.asList(data));
         assertThrows(InvalidNumbersException.class, () -> gamble.howManyWins(numbers));
@@ -31,7 +32,8 @@ class GamblingMachineTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/intUserNumbers1.csv")
-    public void testHowManyWins_WithExceptionWhenToManyNumbersAreGiven(int a, int b, int c, int d, int e, int f, int g){//TODO remove throws InvalidNumbersException {
+    void testHowManyWins_WithExceptionWhenToManyNumbersAreGiven(int a, int b, int c, int d, int e, int f, int g){
+        GamblingMachine gamble = new GamblingMachine();
         Integer[] data = {a, b, c, d, e, f, g};
         Set<Integer> numbers = new HashSet<>(Arrays.asList(data));
         assertThrows(InvalidNumbersException.class, () -> gamble.howManyWins(numbers));
@@ -39,7 +41,8 @@ class GamblingMachineTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/properIntUserNumbers.csv")
-    public void shouldReturnTrueWhenWeEnter6NumbersInRange1To49HowManyWins(int a, int b, int c, int d, int e, int f) throws InvalidNumbersException {
+    void shouldReturnTrueWhenWeEnter6NumbersInRange1To49HowManyWins(int a, int b, int c, int d, int e, int f) throws InvalidNumbersException {
+        GamblingMachine gamble = new GamblingMachine();
         Integer[] data = {a, b, c, d, e, f};
         Set<Integer> numbers = new HashSet<>(Arrays.asList(data));
         assertTrue(gamble.howManyWins(numbers) >= 0 && gamble.howManyWins(numbers) <= 6);
