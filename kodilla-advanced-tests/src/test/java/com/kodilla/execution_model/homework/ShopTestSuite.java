@@ -8,20 +8,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.lessThan;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShopTestSuite {
-    Shop shop = new Shop();
-    Order order1 = new Order(LocalDate.of(2019, 12, 30), "Roberto", 521.13);
-    Order order2 = new Order(LocalDate.of(2020, 1, 13), "Roberto", 320.15);
-    Order order3 = new Order(LocalDate.of(2020, 1, 24), "Marta", 781.12);
-    Order order4 = new Order(LocalDate.of(2020, 2, 15), "Mike1", 56.01);
-    Order order5 = new Order(LocalDate.of(2020, 2, 25), "Alf", 1583);
-
+    private Shop shop;
 
     @Test
     public void shouldAddNewOrderAndReturnNumberOfOrders() {
         //When
+
         int numberOfOrders = shop.numberOfOrders();
         //Then
         assertEquals(5, numberOfOrders);
@@ -36,7 +34,7 @@ class ShopTestSuite {
     }
 
     @ParameterizedTest
-    @MethodSource(value = "com.kodilla.execution_model.homework.DataSources#provideDateFotTestingRange")
+    @MethodSource(value = "com.kodilla.execution_model.homework.DataTestFactory#provideDateFotTestingRange")
     public void shouldReturnListOfOrdersFromPeriodTime(LocalDate from, LocalDate to, int expected) {
         //When
         List<Order> result = shop.getListOfOrdersFromPeriod(from, to);
@@ -45,20 +43,20 @@ class ShopTestSuite {
     }
 
     @ParameterizedTest
-    @MethodSource(value = "com.kodilla.execution_model.homework.DataSources#provideRangeOfValueForTestingGetListOfOrdersBasedOfValueRange")
+    @MethodSource(value = "com.kodilla.execution_model.homework.DataTestFactory#provideRangeOfValueForTestingGetListOfOrdersBasedOfValueRange")
     public void shouldReturnListOfOrdersBasedOnValueRange(double min, double max, int expected) {
         //When
         List<Order> result = shop.getListOfOrdersBasedOfValueRange(min, max);
         //Then
         assertEquals(result.size(), expected);
+        result.forEach(o->{
+            assertThat(o.getOrderValue(), greaterThan(min));
+            assertThat(o.getOrderValue(), lessThan(max)); //coś jeszcze można tu dodać?
+        });
     }
 
     @BeforeEach
     public void initializeInvoice() {
-        shop.addOrder(order1);
-        shop.addOrder(order2);
-        shop.addOrder(order3);
-        shop.addOrder(order4);
-        shop.addOrder(order5);
+        shop = new DataTestFactory().createShop();
     }
 }
