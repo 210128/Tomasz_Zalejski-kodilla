@@ -6,24 +6,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Shop {
-    private List<Order> orders = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order) {
         this.orders.add(order);
     }
 
     public List<Order> getListOfOrdersFromPeriod(LocalDate from, LocalDate to) {
-        List<Order> order = orders.stream()
+        return orders.stream()
                 .filter(o -> o.getOrderDate().isAfter(from) && o.getOrderDate().isBefore(to))
                 .collect(Collectors.toList());
-        return order;
     }
 
     public List<Order> getListOfOrdersBasedOfValueRange(double min, double max) {
-        List<Order> order = orders.stream()
+        return orders.stream()
                 .filter(o -> o.getOrderValue() >= min && o.getOrderValue() <= max)
                 .collect(Collectors.toList());
-        return order;
     }
 
     public int numberOfOrders() {
@@ -31,11 +29,10 @@ public class Shop {
     }
 
     public double sumOfOrders() {
-        double ordersSum = orders.stream()
-                .map(o -> o.getOrderValue())
+        return orders.stream()
+                .map(Order::getOrderValue)
                 .mapToDouble(or -> or)
                 .sum();
-        return ordersSum;
 
     }
 }
