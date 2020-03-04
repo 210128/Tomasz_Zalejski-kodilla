@@ -4,32 +4,37 @@ package com.kodilla.notification.homework;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class NotificationServiceForWeatherHazardsTestSuite {
 
     @Test
     public void notSubscribedClientShouldNotReceiveNotification() {
-       NotificationServiceForWeatherHazards notificationService = new NotificationServiceForWeatherHazards();
+        NotificationServiceForWeatherHazards notificationService = new NotificationServiceForWeatherHazards();
         Client client = Mockito.mock(Client.class);
-        Location location= Mockito.mock(Location.class);
         Notification notification = Mockito.mock(Notification.class);
+
+        notificationService.sendNotificationToAllClients(notification);
+        Mockito.verify(client, Mockito.never()).receive(notification);
 
 
     }
 
 
-
     @Test
-    public void clientShouldBeAbleToAssignSubscriptionsToAGivenLocationAndStartReceivingNotifications() {
+    public void clientShouldBeAbleToAssignSubscriptionsToAGivenLocation() {
+        //When
         NotificationServiceForWeatherHazards whetherNotificationService = new NotificationServiceForWeatherHazards();
-        Client client = Mockito.mock(Client.class);
-        Location location = Mockito.mock(Location.class);
-        Location location1 = Mockito.mock(Location.class);
+        Client client = new Client("Tom");
+        Client client1 = new Client("Mark");
+        Location location = new Location("Warsaw");
+        Location location1 = new Location("Berlin");
+        Location location2 = new Location("Paris");
+        //then
         whetherNotificationService.addSubscriberToLocations(client, location);
         whetherNotificationService.addSubscriberToLocations(client, location1);
-        Notification notification = Mockito.mock(Notification.class);
-        whetherNotificationService.sendNotificationToLocations(notification, location);
-        whetherNotificationService.sendNotificationToLocations(notification,location1);
-
+        whetherNotificationService.addSubscriberToLocations(client1, location2);
+        assertEquals(2, whetherNotificationService.clientLocationsMap. )
 
 
     }
@@ -44,8 +49,8 @@ class NotificationServiceForWeatherHazardsTestSuite {
         whetherNotificationService.addSubscriberToLocations(client, location1);
         whetherNotificationService.removeSubscriberFromLocation(client, location1);
         Notification notification = Mockito.mock(Notification.class);
-        whetherNotificationService.sendNotificationToLocations(notification,  location);
-        whetherNotificationService.sendNotificationToLocations(notification,location1);
+        whetherNotificationService.sendNotificationToLocations(notification, location);
+        whetherNotificationService.sendNotificationToLocations(notification, location1);
 
 
     }
