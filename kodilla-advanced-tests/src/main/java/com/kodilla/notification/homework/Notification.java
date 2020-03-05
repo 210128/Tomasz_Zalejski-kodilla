@@ -17,4 +17,8 @@ public class Notification {
                 "alert='" + alert + '\'' +
                 '}';
     }
+
+    public void send(Location l) {
+
+    }
 }

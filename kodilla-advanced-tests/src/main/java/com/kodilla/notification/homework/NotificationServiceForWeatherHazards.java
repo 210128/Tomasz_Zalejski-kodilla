@@ -6,19 +6,19 @@ public class NotificationServiceForWeatherHazards {
     public final Map<Client, Set<Location>> clientLocationsMap = new HashMap<>();
 
 
-    public void addSubscriberToLocations(Client client, Location location) {
-        Set<Location> locations = new HashSet<>();
-        if (this.clientLocationsMap.get(client) == null) {
+    public void addSubscriberToLocation(Client client, Location location) {
+        if (!this.clientLocationsMap.containsKey(client)) {
+            this.clientLocationsMap.put(client, new HashSet<>(Collections.singletonList(location)));
+        } else {
+            var locations = clientLocationsMap.get(client);
+            locations.add(location);
             this.clientLocationsMap.put(client, locations);
-        } else
-            locations = this.clientLocationsMap.get(client);
-        locations.add(location);
-        this.clientLocationsMap.put(client, locations);
-
-
+        }
     }
 
     public void removeSubscriberFromLocation(Client client, Location location) {
+        if (client == null)
+            return;
         Set<Location> locations = this.clientLocationsMap.get(client);
         if (locations.contains(location)) {
             locations.remove(location);
@@ -28,15 +28,16 @@ public class NotificationServiceForWeatherHazards {
     }
 
     public void sendNotificationToLocations(Notification notification, Location location) {
-        this.clientLocationsMap.forEach((client, locations) -> client.receive(notification));
+        this.clientLocationsMap.forEach((client, locations) -> client.receive(notification, location));
+        //this.clientLocationsMap.keySet().forEach(c -> getClientLocation(c).forEach(l -> c.receive(notification, location)));
+    }
 
+    public Set<Location> getClientLocation(Client client) {
+        return clientLocationsMap.get(client);
     }
 
     public void sendNotificationToAllClients(Notification notification) {
-        for (Map.Entry<Client, Set<Location>> client : clientLocationsMap.entrySet()) {
-            Client key = client.getKey();
-            key.receive(notification);
-        }
+        this.clientLocationsMap.keySet().forEach(c -> c.receive(notification));
     }
 
 
@@ -56,18 +57,15 @@ public class NotificationServiceForWeatherHazards {
         Client mark = new Client("Mark");
         Location warsaw = new Location("Warsaw");
         Location berlin = new Location("Berlin");
-        notificationServiceForWeatherHazards.addSubscriberToLocations(tom, warsaw);
-        notificationServiceForWeatherHazards.addSubscriberToLocations(mark, berlin);
-        notificationServiceForWeatherHazards.addSubscriberToLocations(tom, berlin);
+        notificationServiceForWeatherHazards.addSubscriberToLocation(tom, warsaw);
+        notificationServiceForWeatherHazards.addSubscriberToLocation(mark, berlin);
+        notificationServiceForWeatherHazards.addSubscriberToLocation(tom, berlin);
         notificationServiceForWeatherHazards.display();
         System.out.println();
-        notificationServiceForWeatherHazards.removeSubscriberFromLocation(tom, berlin);
-        notificationServiceForWeatherHazards.display();
-        System.out.println();
-        notificationServiceForWeatherHazards.removeSubscriberFromLocation(tom, warsaw);
-        notificationServiceForWeatherHazards.display();
+
         notificationServiceForWeatherHazards.sendNotificationToLocations(new Notification("Storm"), berlin);
-        notificationServiceForWeatherHazards.sendNotificationToAllClients(new Notification("Alarm"));
+        System.out.println();
+        notificationServiceForWeatherHazards.sendNotificationToAllClients(new Notification("Zmiana regulaminu"));
 
     }
 }
