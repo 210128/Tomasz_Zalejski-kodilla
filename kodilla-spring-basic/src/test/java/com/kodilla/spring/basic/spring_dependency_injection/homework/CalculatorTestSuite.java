@@ -6,15 +6,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class CalculatorTestSuite {
-
-    @Test
-    public void shouldDisplayValue() {
-        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.basic");
-        Display bean = context.getBean(Display.class);
-        double value = bean.display(4);
-        Assertions.assertEquals(4, value);
-    }
-
     @Test
     public void shouldCalculateSum() {
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.basic");
