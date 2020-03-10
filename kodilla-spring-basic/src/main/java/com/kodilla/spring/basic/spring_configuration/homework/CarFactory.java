@@ -14,7 +14,6 @@ public class CarFactory {
         Car car;
         Random generator = new Random();
         int season = generator.nextInt(12) + 1;
-        int hours = generator.nextInt(25);
         if (season > 0 && season < 3 || season == 12) {
             car = new SUV();
         } else if (season > 2 && season < 6) {
@@ -25,5 +24,11 @@ public class CarFactory {
             car = new Sedan();
         }
         return car;
+    }
+
+    public static void main(String[] args) {
+        CarFactory carFactory= new CarFactory();
+        System.out.println(carFactory.randomCar());
+        System.out.println(carFactory.randomCar().hasHeadlightsTurnedOn());
     }
 }
