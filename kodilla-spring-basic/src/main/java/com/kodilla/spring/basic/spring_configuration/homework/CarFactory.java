@@ -3,11 +3,20 @@ package com.kodilla.spring.basic.spring_configuration.homework;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 import java.util.Random;
 
 @Configuration
 public class CarFactory {
+
+    @Bean
+    public Cabrio createCabrio() {
+        return new Cabrio();
+    }
+
+    @Bean
+    public SUV createSUV() {
+        return new SUV();
+    }
 
     @Bean
     public Car randomCar() {
@@ -24,11 +33,5 @@ public class CarFactory {
             car = new Sedan();
         }
         return car;
-    }
-
-    public static void main(String[] args) {
-        CarFactory carFactory= new CarFactory();
-        System.out.println(carFactory.randomCar());
-        System.out.println(carFactory.randomCar().hasHeadlightsTurnedOn());
     }
 }
