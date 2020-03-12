@@ -3,6 +3,7 @@ package com.kodilla.spring.basic.spring_configuration.homework;
 import java.util.Random;
 
 public class Sedan implements Car {
+    /*TODO REview kdrzazga - same remarks as in SUV*/
     @Override
     public boolean hasHeadlightsTurnedOn() {
         Random generator = new Random();
