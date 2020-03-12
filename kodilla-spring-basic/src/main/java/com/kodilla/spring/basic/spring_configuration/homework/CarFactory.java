@@ -8,12 +8,12 @@ import java.util.Random;
 @Configuration
 public class CarFactory {
 
-    @Bean
+    @Bean(name = "cabrio")
     public Cabrio createCabrio() {
         return new Cabrio();
     }
 
-    @Bean
+    @Bean(name = "suv")
     public SUV createSUV() {
         return new SUV();
     }

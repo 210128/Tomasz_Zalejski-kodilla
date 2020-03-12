@@ -1,20 +1,15 @@
 package com.kodilla.spring.basic.spring_configuration.homework;
 
-import java.util.Random;
-
 public class Sedan implements Car {
-    /*TODO REview kdrzazga - same remarks as in SUV*/
+
     @Override
-    public boolean hasHeadlightsTurnedOn() {
-        Random generator = new Random();
-        int hour = generator.nextInt(24)+1;
-        if (hour >= 20 || hour <= 6) {
-            System.out.println("We have an hour "+ hour+ ". Headlights turned on");
-            return true;
-        } else {
-            System.out.println("We have an hour "+ hour+ ". Headlights turned off");
-            return false;
-        }
+    public boolean hasHeadlightsTurnedOn(Integer hour) {
+
+        int hours = hour;
+        boolean isNight = (hours >= 20 || hours <= 6);
+        String msg = isNight ? "on" : "off";
+        System.out.println("We have an hour " + hours + ". Headlights turned " + msg);
+        return isNight;
     }
 
     @Override
