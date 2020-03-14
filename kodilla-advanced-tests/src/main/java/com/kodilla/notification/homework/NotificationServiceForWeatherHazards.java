@@ -5,7 +5,6 @@ import java.util.*;
 public class NotificationServiceForWeatherHazards {
     public final Map<Client, Set<Location>> clientLocationsMap = new HashMap<>();
 
-
     public void addSubscriberToLocation(Client client, Location location) {
         if (!this.clientLocationsMap.containsKey(client)) {
             this.clientLocationsMap.put(client, new HashSet<>(Collections.singletonList(location)));
@@ -40,15 +39,16 @@ public class NotificationServiceForWeatherHazards {
         this.clientLocationsMap.keySet().forEach(c -> c.receive(notification));
     }
 
+    public void remove(Location loc) {
+        this.clientLocationsMap.values().remove(loc);
+    }
 
     public void display() {   // metoda pomocnicza
-        for (Map.Entry<Client, Set<Location>> pair : clientLocationsMap.entrySet()) {
+        for (Map.Entry<Client, Set<Location>> pair : this.clientLocationsMap.entrySet()) {
             Client key = pair.getKey();                      // Key
             Set<Location> value = pair.getValue();                  // Value
             System.out.println(key + ":" + value);
         }
-
-
     }
 
     public static void main(String[] args) {
@@ -62,10 +62,7 @@ public class NotificationServiceForWeatherHazards {
         notificationServiceForWeatherHazards.addSubscriberToLocation(tom, berlin);
         notificationServiceForWeatherHazards.display();
         System.out.println();
-
-        notificationServiceForWeatherHazards.sendNotificationToLocations(new Notification("Storm"), berlin);
-        System.out.println();
-        notificationServiceForWeatherHazards.sendNotificationToAllClients(new Notification("Zmiana regulaminu"));
-
+        notificationServiceForWeatherHazards.remove(berlin);
+        notificationServiceForWeatherHazards.display();
     }
 }
