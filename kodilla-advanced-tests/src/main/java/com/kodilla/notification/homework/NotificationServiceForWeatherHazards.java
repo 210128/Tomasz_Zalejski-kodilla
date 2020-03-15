@@ -40,13 +40,17 @@ public class NotificationServiceForWeatherHazards {
     }
 
     public void remove(Location loc) {
-        this.clientLocationsMap.values().remove(loc);
+        this.clientLocationsMap.forEach((client, locations) ->{
+            var locs = this.clientLocationsMap.get(client);
+            locs.remove(loc);
+            this.clientLocationsMap.replace(client, locs);
+        });
     }
 
-    public void display() {   // metoda pomocnicza
+    public void display() {
         for (Map.Entry<Client, Set<Location>> pair : this.clientLocationsMap.entrySet()) {
-            Client key = pair.getKey();                      // Key
-            Set<Location> value = pair.getValue();                  // Value
+            Client key = pair.getKey();
+            Set<Location> value = pair.getValue();
             System.out.println(key + ":" + value);
         }
     }
