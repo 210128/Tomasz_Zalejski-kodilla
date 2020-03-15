@@ -12,6 +12,7 @@
         <module>kodilla-stream</module>
         <module>kodilla-advanced-tests</module>
         <module>kodilla-spring-basic</module>
+        <module>kodilla-rest-api</module>
     </modules>
 
 
