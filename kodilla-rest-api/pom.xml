@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>kodilla-spring-basic</artifactId>
+    <artifactId>kodilla-rest-api</artifactId>
     <build>
         <plugins>
             <plugin>
