@@ -1,7 +1,6 @@
 package com.kodilla.rest.domain;
 
 import java.util.Objects;
-
 public class BookDto {
     public String title;
     public String author;
