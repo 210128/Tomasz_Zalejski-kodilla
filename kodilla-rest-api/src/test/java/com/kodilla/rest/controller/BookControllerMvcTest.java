@@ -17,9 +17,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.json;
 
 @ExtendWith(SpringExtension.class)
@@ -48,16 +54,20 @@ public class BookControllerMvcTest {
     @Test
     public void shouldAddBook() throws Exception {
         //given
-        List<BookDto> booksList = new ArrayList<>();
-        Mockito.when(bookService.getBooks()).thenReturn(booksList);
         BookDto bookDto = new BookDto("title 1", "author 1");
         String json = new Gson().toJson(bookDto);
-        //when & then
+
+        doAnswer(invocation -> {
+            var arg0 = invocation.getArgument(0);
+
+            assertEquals(bookDto, arg0);
+            return null;
+        }).when(bookService).addBook(bookDto);
+
         mockMvc.perform(MockMvcRequestBuilders.post("/books")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
-                .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)));
-
+                .andExpect(MockMvcResultMatchers.status().is(200))//returned status is OK
+                .andExpect(MockMvcResultMatchers.content().string(""));//with empty content
     }
 }
