@@ -13,6 +13,7 @@
         <module>kodilla-advanced-tests</module>
         <module>kodilla-spring-basic</module>
         <module>kodilla-rest-api</module>
+        <module>kodilla-soap</module>
     </modules>
 
 
