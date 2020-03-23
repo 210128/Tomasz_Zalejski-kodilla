@@ -3,7 +3,7 @@
     <soapenv:Header/>
     <soapenv:Body>
         <kodilla:getBookRequest>
-            <kodilla:name></kodilla:name>
+            <kodilla:referenceNumber>Tech001</kodilla:referenceNumber>
         </kodilla:getBookRequest>
     </soapenv:Body>
 </soapenv:Envelope>

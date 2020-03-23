@@ -1,4 +1,4 @@
-package com.soap.library.ws;
+package com.kodilla.library.soap.ws;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;

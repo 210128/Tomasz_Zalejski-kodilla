@@ -1,8 +1,8 @@
-package com.soap.library.ws;
+package com.kodilla.library.soap.ws;
 
 import com.kodilla.books.soap.GetBookRequest;
 import com.kodilla.books.soap.GetBookResponse;
-import com.soap.library.repository.BooksRepository;
+import com.kodilla.library.soap.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -11,7 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class BookEndpoint {
-    private static final String NAMESPACE_URI = "http://kodilla.com/books.soap";
+    private static final String NAMESPACE_URI = "http://kodilla.com/books/soap";
     private BooksRepository booksRepository;
 
     @Autowired

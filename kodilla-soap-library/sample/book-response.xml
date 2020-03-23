@@ -1,0 +1,14 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:getBookResponse xmlns:ns2="http://kodilla.com/books/soap">
+            <ns2:book>
+                <ns2:referenceNumber>Tech001</ns2:referenceNumber>
+                <ns2:title>Java Power Tool</ns2:title>
+                <ns2:author>John Ferguson Smart</ns2:author>
+                <ns2:publicationDate>2008</ns2:publicationDate>
+                <ns2:literaryGenre>TECH</ns2:literaryGenre>
+            </ns2:book>
+        </ns2:getBookResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
