@@ -17,16 +17,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doNothing;
-import static org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.json;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(BookController.class)
@@ -34,6 +29,8 @@ public class BookControllerMvcTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+
 
     @MockBean
     private BookService bookService;
@@ -70,4 +67,5 @@ public class BookControllerMvcTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))//returned status is OK
                 .andExpect(MockMvcResultMatchers.content().string(""));//with empty content
     }
+
 }
