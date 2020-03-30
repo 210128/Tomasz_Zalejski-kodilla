@@ -18,8 +18,8 @@ public class BookService {
         return books.add(bookDto);
     }
 
-    public void removeBook(BookDto bookDto) {
-        books.remove(bookDto);
+    public boolean removeBook(BookDto bookDto) {
+        return books.remove(bookDto);
     }
 
     public String addBook2(BookDto bookDto) {

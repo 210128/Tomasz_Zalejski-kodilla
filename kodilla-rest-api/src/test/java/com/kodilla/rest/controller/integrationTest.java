@@ -11,15 +11,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
-
-
-import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -41,6 +37,37 @@ public class integrationTest {
                 .exchange(bookResourceUrl, HttpMethod.POST, request, Boolean.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.CREATED);
+        assertEquals(response.getBody(), true);
+
+    }
+
+   /* @Test
+    public void shouldGetBooks2() throws Exception {
+
+        List<BookDto> booksList = new ArrayList<>();
+        booksList.add(new BookDto("title 1", "author 1"));
+        booksList.add(new BookDto("title 2", "author 2"));
+        Assertions.assertNotNull(restTemplate);
+        HttpEntity<List<BookDto>> request = new HttpEntity<>(booksList);
+        String bookResourceUrl = "http://localhost:8080/books";
+        ResponseEntity<BookDto> response = restTemplate
+                .exchange(bookResourceUrl, HttpMethod.GET, request, BookDto.class);
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
+    }*/
+
+    @Test
+    public void shouldDeleteBook() throws Exception {
+        Assertions.assertNotNull(restTemplate);
+        List<BookDto> booksList = new ArrayList<>();
+        booksList.add(new BookDto("title 1", "author 1"));
+        booksList.add(new BookDto("title 2", "author 2"));
+        var bookDto = booksList.get(1);
+        HttpEntity<BookDto> request = new HttpEntity<>(bookDto);
+        String bookResourceUrl = "http://localhost:8080/books";
+        ResponseEntity<Boolean> response = restTemplate
+                .exchange(bookResourceUrl, HttpMethod.DELETE, request, Boolean.class);
+
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertEquals(response.getBody(), true);
 
     }

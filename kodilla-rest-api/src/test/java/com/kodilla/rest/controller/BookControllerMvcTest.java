@@ -1,6 +1,5 @@
 package com.kodilla.rest.controller;
 
-
 import com.google.gson.Gson;
 import com.kodilla.rest.domain.BookDto;
 import com.kodilla.rest.service.BookService;
@@ -29,8 +28,6 @@ public class BookControllerMvcTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-
 
     @MockBean
     private BookService bookService;
@@ -67,5 +64,4 @@ public class BookControllerMvcTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))//returned status is OK
                 .andExpect(MockMvcResultMatchers.content().string(""));//with empty content
     }
-
 }

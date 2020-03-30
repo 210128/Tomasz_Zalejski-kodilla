@@ -24,16 +24,21 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<Boolean> addBook(@RequestBody BookDto bookDto) {
-        boolean succes = bookService.addBook(bookDto);
-        var status = (succes) ?  HttpStatus.CREATED: HttpStatus.INTERNAL_SERVER_ERROR;
+        boolean success = bookService.addBook(bookDto);
+        var status = (success) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
         return ResponseEntity
                 .status(status)
-                .body(succes);
+                .body(success);
     }
 
     @DeleteMapping
-    public void removeBook(@RequestBody BookDto bookDto) {
-        bookService.getBooks().remove(bookDto);
+    public ResponseEntity<Boolean> removeBook(@RequestBody BookDto bookDto) {
+
+        boolean success = bookService.getBooks().remove(bookDto);
+        var status = (success) ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR;
+        return ResponseEntity
+                .status(status)
+                .body(success);
     }
 }
 
