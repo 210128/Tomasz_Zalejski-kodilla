@@ -34,7 +34,9 @@ public class BookController {
     @DeleteMapping
     public ResponseEntity<Boolean> removeBook(@RequestBody BookDto bookDto) {
 
-        boolean success = bookService.getBooks().remove(bookDto);
+        boolean success = bookService.getBooks().remove(bookDto);//TODO: Review SINGLE RESPONSIBILITY violation
+        // Please encapsulate bookDto removal INSIDE bookService
+
         var status = (success) ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR;
         return ResponseEntity
                 .status(status)
