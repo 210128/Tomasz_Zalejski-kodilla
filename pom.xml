@@ -15,6 +15,7 @@
         <module>kodilla-rest-api</module>
         <module>kodilla-soap</module>
         <module>kodilla-soap-library</module>
+        <module>kodilla-selenium</module>
     </modules>
 
 
