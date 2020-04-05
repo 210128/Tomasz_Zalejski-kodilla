@@ -16,6 +16,11 @@
         <artifactId>selenium-java</artifactId>
         <version>4.0.0-alpha-5</version>
     </dependency>
+    <dependency>
+        <groupId>com.testautomationguru.ocular</groupId>
+        <artifactId>ocular</artifactId>
+        <version>1.0.0.Alpha</version>
+    </dependency>
 </dependencies>
 
 </project>

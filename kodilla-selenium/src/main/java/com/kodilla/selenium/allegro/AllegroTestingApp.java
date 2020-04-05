@@ -14,7 +14,7 @@ public class AllegroTestingApp {
         System.setProperty("webdriver.chrome.driver", "c:\\selenium-drivers\\chrome\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.allegro.pl/");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         WebElement cancelButton = driver.findElement(By.xpath("//*[@data-box-name=\"allegro.rodoConsentModal\"]/div/div/div/button"));
         cancelButton.click();
