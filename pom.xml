@@ -16,6 +16,8 @@
         <module>kodilla-soap</module>
         <module>kodilla-soap-library</module>
         <module>kodilla-selenium</module>
+        <module>kodilla-cucumber</module>
+
     </modules>
 
 
