@@ -17,6 +17,7 @@
         <module>kodilla-soap-library</module>
         <module>kodilla-selenium</module>
         <module>kodilla-cucumber</module>
+        <module>kodilla-code-coverage</module>
 
     </modules>
 
