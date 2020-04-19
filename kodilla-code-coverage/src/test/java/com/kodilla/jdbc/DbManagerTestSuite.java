@@ -67,7 +67,7 @@ class DbManagerTestSuite {
                 "JOIN POSTS P ON U.ID = P.USER_ID\n" +
                 "GROUP BY P.USER_ID\n" +
                 "HAVING COUNT(*) > 1\n" +
-                "ORDER BY U.LASTNAME, U.FIRSTNAME";
+                "ORDER BY U.LASTNAME, U.FIRSTNAME;";
         Statement statement = dbManager.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(countQuery);
         int count = 0;

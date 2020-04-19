@@ -30,7 +30,7 @@ class BookControllerTest {
         //given
         BookService bookServiceMock = Mockito.mock(BookService.class);
         BookController bookController = new BookController(bookServiceMock);
-        List<BookDto> booksList = new ArrayList<>();
+        BookDtoList booksList = new BookDtoList();
         booksList.add(new BookDto("Title 1", "Author 1"));
         booksList.add(new BookDto("Title 2", "Author 2"));
         Mockito.when(bookServiceMock.getBooks()).thenReturn(booksList);
