@@ -18,7 +18,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @Import(Config.class)
 @ExtendWith(SpringExtension.class)
 public class integrationTest {
@@ -64,11 +63,19 @@ public class integrationTest {
         var bookDto = booksList.get(1);
         HttpEntity<BookDto> request = new HttpEntity<>(bookDto);
         String bookResourceUrl = "http://localhost:8080/books";
+        ResponseEntity<Boolean> responseAdd = restTemplate
+                .exchange(bookResourceUrl, HttpMethod.POST, request, Boolean.class);
+
+     /*   ResponseEntity<List> books = restTemplate
+                .exchange(bookResourceUrl, HttpMethod.GET, new HttpEntity(new ArrayList()), List.class);
+        assertEquals(books.getStatusCode(), HttpStatus.OK);
+        assertThat(books.getBody(), contains(bookDto) );
+
         ResponseEntity<Boolean> response = restTemplate
                 .exchange(bookResourceUrl, HttpMethod.DELETE, request, Boolean.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertEquals(response.getBody(), true);
-
+*/
     }
 }

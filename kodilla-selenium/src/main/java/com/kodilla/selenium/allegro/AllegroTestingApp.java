@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.concurrent.TimeUnit;
-
 public class AllegroTestingApp {
 
     public static void main(String[] args) {
@@ -16,7 +14,7 @@ public class AllegroTestingApp {
         driver.get("https://www.allegro.pl/");
        // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        WebElement cancelButton = driver.findElement(By.xpath("//*[@data-box-name=\"allegro.rodoConsentModal\"]/div/div/div/button"));
+       WebElement cancelButton = driver.findElement(By.xpath("//*[@data-box-name=\"allegro.rodoConsentModal\"]/div/div/div/button"));
         cancelButton.click();
 
         WebElement filtersSelectedCombo = driver.findElement(By.xpath("//*[@class=\"_r65gb _1fwkl\"]/select"));

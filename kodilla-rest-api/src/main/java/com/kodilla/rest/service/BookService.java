@@ -18,13 +18,13 @@ public class BookService {
         return books.add(bookDto);
     }
 
-    public boolean removeBook(BookDto bookDto) {
-        return books.remove(bookDto);
-    }
-
     public String addBook2(BookDto bookDto) {
         return books.add(bookDto) ? "T" : "F";
 
+    }
+
+    public boolean remove(BookDto bookDto) {
+        return books.remove(bookDto);
     }
 }
 
