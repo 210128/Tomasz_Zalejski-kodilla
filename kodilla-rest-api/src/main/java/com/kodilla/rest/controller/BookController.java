@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,17 +19,13 @@ public class BookController {
     }
 
     @GetMapping
-    public List<BookDto> getBooks() {
+    public ArrayList<BookDto> getBooks() {
         return bookService.getBooks();
     }
 
     @PostMapping
-    public ResponseEntity<Boolean> addBook(@RequestBody BookDto bookDto) {
-        boolean success = bookService.addBook(bookDto);
-        var status = (success) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
-        return ResponseEntity
-                .status(status)
-                .body(success);
+    public void addBook(@RequestBody BookDto bookDto) {
+        bookService.addBook(bookDto);
     }
 
     @DeleteMapping

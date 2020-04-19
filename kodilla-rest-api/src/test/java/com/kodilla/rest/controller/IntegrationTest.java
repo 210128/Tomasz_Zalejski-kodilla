@@ -14,13 +14,17 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
+import static org.hamcrest.Matchers.contains;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Import(Config.class)
 @ExtendWith(SpringExtension.class)
-public class integrationTest {
+public class IntegrationTest {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -66,16 +70,17 @@ public class integrationTest {
         ResponseEntity<Boolean> responseAdd = restTemplate
                 .exchange(bookResourceUrl, HttpMethod.POST, request, Boolean.class);
 
-     /*   ResponseEntity<List> books = restTemplate
-                .exchange(bookResourceUrl, HttpMethod.GET, new HttpEntity(new ArrayList()), List.class);
+        ResponseEntity<BookDtoList> books = restTemplate
+                .exchange(bookResourceUrl, HttpMethod.GET, new HttpEntity(new ArrayList()), BookDtoList.class);
         assertEquals(books.getStatusCode(), HttpStatus.OK);
-        assertThat(books.getBody(), contains(bookDto) );
+        assertTrue(books.getBody().contains(bookDto));
+        books.getBody().forEach(b -> System.out.println(b));
 
         ResponseEntity<Boolean> response = restTemplate
                 .exchange(bookResourceUrl, HttpMethod.DELETE, request, Boolean.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertEquals(response.getBody(), true);
-*/
+
     }
 }

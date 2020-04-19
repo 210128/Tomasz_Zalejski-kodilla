@@ -1,5 +1,6 @@
 package com.kodilla.rest.service;
 
+import com.kodilla.rest.controller.BookDtoList;
 import com.kodilla.rest.domain.BookDto;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +9,9 @@ import java.util.List;
 
 @Service
 public class BookService {
-    private List<BookDto> books = new ArrayList<>();
+    private BookDtoList books = new BookDtoList();
 
-    public List<BookDto> getBooks() {
+    public BookDtoList getBooks() {
         return books;
     }
 
