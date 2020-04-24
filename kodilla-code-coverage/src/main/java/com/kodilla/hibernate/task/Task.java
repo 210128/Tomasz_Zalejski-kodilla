@@ -1,5 +1,6 @@
 package com.kodilla.hibernate.task;
 
+import com.kodilla.hibernate.tasklist.TaskList;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -12,8 +13,9 @@ public class Task {
     private String description;
     private LocalDate created;
     private int duration;
-
-    public Task(){
+    private TaskFinancialDetails taskFinancialDetails;
+    private TaskList taskList;
+    public Task() {
 
     }
 
@@ -22,10 +24,11 @@ public class Task {
         this.created = LocalDate.now();
         this.duration = duration;
     }
-@Id
-@GeneratedValue
-@NotNull
-@Column(name = "ID", unique = true)
+
+    @Id
+    @GeneratedValue
+    @NotNull
+    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
@@ -44,6 +47,16 @@ public class Task {
     public int getDuration() {
         return duration;
     }
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "TASKS_FINANCIALS_ID")
+    public TaskFinancialDetails getTaskFinancialDetails() {
+        return taskFinancialDetails;
+    }
+    @ManyToOne
+    @JoinColumn(name = "TASKLIST_ID")
+    public TaskList getTaskList() {
+        return taskList;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -59,5 +72,13 @@ public class Task {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public void setTaskFinancialDetails(TaskFinancialDetails taskFinancialDetails) {
+        this.taskFinancialDetails = taskFinancialDetails;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
     }
 }
