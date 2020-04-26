@@ -3,6 +3,7 @@ package com.kodilla.hibernate.invoice;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,7 +11,7 @@ import java.util.List;
 public class Product {
     private int id;
     private String name;
-    private List<Item> items;
+    private List<Item> items= new ArrayList<>();
 
     public Product() {
     }
@@ -27,7 +28,7 @@ public class Product {
         return id;
     }
 
-    @Column(name = "NAME")
+   @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -38,6 +39,7 @@ public class Product {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+
     public List<Item> getItems() {
         return items;
     }

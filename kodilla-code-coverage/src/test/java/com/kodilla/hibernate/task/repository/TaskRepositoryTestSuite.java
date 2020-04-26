@@ -52,10 +52,11 @@ public class TaskRepositoryTestSuite {
         int id = readTask.get(0).getId();
         taskRepository.deleteById(id);
     }
+
     @Test
-    public void testTaskRepositorySaveWithFinancialDetails(){
+    public void testTaskRepositorySaveWithFinancialDetails() {
         //Given
-Task task = new Task(DESCRIPTION, 30);
+        Task task = new Task(DESCRIPTION, 30);
         TaskFinancialDetails financialDetails = new TaskFinancialDetails(new BigDecimal(120), false);
         task.setTaskFinancialDetails(financialDetails);
         //When
