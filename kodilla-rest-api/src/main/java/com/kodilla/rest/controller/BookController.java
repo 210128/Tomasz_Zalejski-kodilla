@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -24,16 +23,16 @@ public class BookController {
     }
 
     @PostMapping
-    public void addBook(@RequestBody BookDto bookDto) {
+    public ResponseEntity<Boolean> addBook(@RequestBody BookDto bookDto) {
         bookService.addBook(bookDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(true);
     }
 
     @DeleteMapping
     public ResponseEntity<Boolean> removeBook(@RequestBody BookDto bookDto) {
-
-        boolean success = bookService.remove(bookDto);//TODO: Review SINGLE RESPONSIBILITY violation
-        // Please encapsulate bookDto removal INSIDE bookService
-
+        boolean success = bookService.remove(bookDto);
         var status = (success) ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR;
         return ResponseEntity
                 .status(status)

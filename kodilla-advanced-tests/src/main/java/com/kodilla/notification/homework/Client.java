@@ -3,7 +3,7 @@ package com.kodilla.notification.homework;
 import java.util.Objects;
 
 public class Client {
-    private String username;
+    private final String username;
 
     public Client(String username) {
         this.username = username;

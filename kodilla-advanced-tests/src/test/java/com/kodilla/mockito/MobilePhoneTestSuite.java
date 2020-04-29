@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class MobilePhoneTestSuite {
     MobilePhone myPhone = Mockito.mock(MobilePhone.class);
     @Test
@@ -24,9 +22,9 @@ class MobilePhoneTestSuite {
         myPhone.launchApplication("Tetris4D");
         Mockito.verify(myPhone).launchApplication("Tetris4D");
 }
-@Test
+/*@Test
     public void testVerificationFailure(){
         myPhone.needsCharging();
         Mockito.verify(myPhone).getFreeStorage();
-}
+}*/
 }

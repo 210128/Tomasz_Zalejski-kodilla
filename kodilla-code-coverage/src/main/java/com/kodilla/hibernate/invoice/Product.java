@@ -11,7 +11,7 @@ import java.util.List;
 public class Product {
     private int id;
     private String name;
-    private List<Item> items= new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     public Product() {
     }
@@ -21,7 +21,7 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     @Column(name = "PRODUCT_ID", unique = true)
     public int getId() {

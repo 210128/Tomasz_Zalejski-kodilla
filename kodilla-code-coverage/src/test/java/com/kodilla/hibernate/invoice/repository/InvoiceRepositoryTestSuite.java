@@ -18,9 +18,6 @@ public class InvoiceRepositoryTestSuite {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
-    @Autowired
-    private ItemRepository itemRepository;
-
     @Test
     public void testInvoiceRepositorySave() {
         //Given
@@ -30,8 +27,8 @@ public class InvoiceRepositoryTestSuite {
 
         Item item1 = new Item(new BigDecimal(15), 2, new BigDecimal(30));
         Item item2 = new Item(new BigDecimal(2), 5, new BigDecimal(10));
-product1.getItems().add(item1);
-product2.getItems().add(item2);
+        product1.getItems().add(item1);
+        product2.getItems().add(item2);
         item1.setProduct(product1);
         item2.setProduct(product2);
 

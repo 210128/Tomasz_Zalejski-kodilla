@@ -1,10 +1,9 @@
 package com.kodilla.notification.homework;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Location {
-    private String locationName;
+    private final String locationName;
 
     public Location(String locationName) {
         this.locationName = locationName;

@@ -1,7 +1,7 @@
 package com.kodilla.notification.homework;
 
 public class Notification {
-    private String alert;
+    private final String alert;
 
     public Notification(String alert) {
         this.alert = alert;
@@ -16,9 +16,5 @@ public class Notification {
         return "Notification{" +
                 "alert='" + alert + '\'' +
                 '}';
-    }
-
-    public void send(Location l) {
-
     }
 }

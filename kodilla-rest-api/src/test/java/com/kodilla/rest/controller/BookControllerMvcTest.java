@@ -16,12 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doAnswer;
-
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(BookController.class)
 public class BookControllerMvcTest {
@@ -61,7 +55,7 @@ public class BookControllerMvcTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/books")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
-                .andExpect(MockMvcResultMatchers.status().is(200))//returned status is OK
-                .andExpect(MockMvcResultMatchers.content().string(""));//with empty content
+                .andExpect(MockMvcResultMatchers.status().is(201))//returned status is OK
+                .andExpect(MockMvcResultMatchers.content().string("true"));//with empty content
     }
 }

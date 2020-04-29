@@ -2,6 +2,7 @@ package com.kodilla.spring.basic.spring_dependency_injection.homework;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -36,6 +37,14 @@ public class ShippingCenterTestSuite {
         DeliveryService bean = context.getBean(DeliveryService.class);
         boolean message = bean.deliverPackage("Wiejska 4", 50.1);
         Assertions.assertFalse(message);
+    }
+    @Test
+    public void shouldSendPackage(){
+        NotificationService notificationService = new NotificationService();
+        DeliveryService deliveryService = new DeliveryService();
+        ShippingCenter shippingCenter = Mockito.mock(ShippingCenter.class);
+        var result = shippingCenter.sendPackage("Wiejska 10", 15);
+        Mockito.verify(shippingCenter).sendPackage("Wiejska 10", 15);
     }
 
 }
