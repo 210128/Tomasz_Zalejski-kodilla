@@ -18,6 +18,7 @@
         <module>kodilla-selenium</module>
         <module>kodilla-cucumber</module>
         <module>kodilla-code-coverage</module>
+        <module>kodilla-collections-advanced</module>
 
     </modules>
 
